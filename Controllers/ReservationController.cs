@@ -11,6 +11,7 @@ using ReservationWebApp.Models;
 
 namespace ReservationWebApp.Controllers
 {
+    [Authorize]
     public class ReservationController : Controller
     {
         private ReservationContext db = new ReservationContext();
