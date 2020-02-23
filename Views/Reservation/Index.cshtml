@@ -9,37 +9,55 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm("Index","Reservation", 
+    new { ReturnUrl = ViewBag.ReturnUrl }, 
+    FormMethod.Get, 
+    htmlAttributes:new { @class="form-inline m-5" }))
+{
+<div class="form-row">
+    @Html.Label("予約日", new { @class = "mb-2" })
+    @Html.TextBox("searchDate", null, new { @class = "form-control mb-2", @type = "date" })
+    <input type="submit" class="btn btn-primary mb-2" value="Search" />
+</div>
+}
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ReservationDate)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Course.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Student.FirstName)
+            @Html.DisplayNameFor(model => model.Student.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ReservationDate)
+            @Html.DisplayNameFor(model => model.Student.FirstName)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Course.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Student.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReservationDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReservationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.FirstName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>

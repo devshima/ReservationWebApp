@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -10,8 +11,10 @@ namespace ReservationWebApp.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int StudentID { get; set; }
-        public string FirstName { get; set; }
+        [DisplayName("姓")]
         public string LastName { get; set; }
+        [DisplayName("名")]
+        public string FirstName { get; set; }
 
     }
 }

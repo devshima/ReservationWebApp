@@ -14,12 +14,19 @@ namespace ReservationWebApp.Controllers
     [Authorize]
     public class ReservationController : Controller
     {
-        private ReservationContext db = new ReservationContext();
+        private readonly ReservationContext db = new ReservationContext();
 
         // GET: Reservation
-        public ActionResult Index()
-        {
+        public ActionResult Index(DateTime? searchDate)
+        {   
             var reservations = db.Reservations.Include(r => r.Course).Include(r => r.Student);
+            if (searchDate.HasValue)
+            {
+                reservations = reservations.Where(r => r.ReservationDate == searchDate);
+            }else{
+                var defaultDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                return RedirectToAction("Index", new { searchDate = DateTime.Now.ToString("yyyy-MM-dd")});
+            }
             return View(reservations.ToList());
         }
 

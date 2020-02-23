@@ -21,8 +21,8 @@ namespace ReservationWebApp.DAL
 
             var students = new List<Student>
             {
-                new Student{StudentID=1, FirstName="やまおか", LastName="しろう"},
-                new Student{StudentID=2, FirstName="くりた", LastName="ゆうこ"}
+                new Student{StudentID=1, FirstName="しろう", LastName="やまおか"},
+                new Student{StudentID=2, FirstName="ゆうこ", LastName="くりた"}
             };
             students.ForEach(s => context.Students.Add(s));
             context.SaveChanges();
